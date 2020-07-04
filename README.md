@@ -1,6 +1,6 @@
 # immurl
 
-🔗 A tiny, 0-dependency, immutable URL library, backed by the native whatwg URL.
+🔗 A tiny (< 500B), 0-dependency, immutable URL library, backed by the native whatwg URL.
 
 ## Install
 
