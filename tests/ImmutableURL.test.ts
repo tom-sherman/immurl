@@ -29,14 +29,14 @@ describe('equivalent to the native URL object', () => {
     }
   );
 
-  test.each(URLS.map((url) => [url]))('toString - %s', (input) => {
+  test.each(URLS)('toString - %s', (input) => {
     const immutable = new ImmutableURL(input);
     const url = new URL(input);
 
     expect(immutable.toString()).toBe(url.toString());
   });
 
-  test.each(URLS.map((url) => [url]))('seachParams - %s', (input) => {
+  test.each(URLS)('seachParams - %s', (input) => {
     const immutable = new ImmutableURL(input);
     const url = new URL(input);
 
