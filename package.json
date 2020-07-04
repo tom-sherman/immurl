@@ -1,0 +1,33 @@
+{
+  "name": "immurl",
+  "version": "0.0.1",
+  "description": "",
+  "source": "lib/immurl.ts",
+  "main": "dist/immurl.js",
+  "module": "dist/immurl.module.js",
+  "unpkg": "dist/immurl.umd.js",
+  "types": "dist/immurl.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typecheck": "tsc --noEmit",
+    "build": "microbundle",
+    "dev": "microbundle watch"
+  },
+  "keywords": [],
+  "author": {
+    "email": "the.tomsherman@gmail.com",
+    "name": "Tom Sherman",
+    "url": "https://github.com/tom-sherman"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "babel-jest": "^26.1.0",
+    "jest": "^26.1.0",
+    "microbundle": "^0.12.2",
+    "prettier": "^2.0.5",
+    "typescript": "^3.9.6"
+  }
+}
