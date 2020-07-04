@@ -1,6 +1,6 @@
-type A = Readonly<URL>;
+import { URL_PROPERTIES } from './constants';
 
-export default class ImmutableURL implements Readonly<URL> {
+export class ImmutableURL implements Readonly<URL> {
   private readonly _url: URL;
   readonly hash!: string;
   readonly host!: string;
@@ -20,10 +20,9 @@ export default class ImmutableURL implements Readonly<URL> {
   constructor(url: string | URL, base?: string | URL) {
     this._url = typeof url === 'object' ? url : new URL(url, base);
 
-    Object.entries(this._url).forEach(([key, value]) => {
-      // @ts-ignore
-      this[key] = value;
-    });
+    for (const key of URL_PROPERTIES) {
+      this[key] = this._url[key] as any;
+    }
   }
 
   toString() {
@@ -39,7 +38,7 @@ export default class ImmutableURL implements Readonly<URL> {
    * @param property The property to set
    * @param newValue The new value
    */
-  set<P extends Exclude<keyof URL, 'toJSON'>>(
+  set<P extends Exclude<keyof URL, 'toJSON' | 'origin'>>(
     property: P,
     newValue: URL[P]
   ): ImmutableURL {

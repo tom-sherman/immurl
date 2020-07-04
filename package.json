@@ -8,7 +8,7 @@
   "unpkg": "dist/immurl.umd.js",
   "types": "dist/immurl.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "typecheck": "tsc --noEmit",
     "build": "microbundle",
     "dev": "microbundle watch"
@@ -24,8 +24,11 @@
     "@babel/core": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
+    "@types/jest": "^26.0.3",
+    "@types/lodash": "^4.14.157",
     "babel-jest": "^26.1.0",
     "jest": "^26.1.0",
+    "lodash": "^4.17.15",
     "microbundle": "^0.12.2",
     "prettier": "^2.0.5",
     "typescript": "^3.9.6"
