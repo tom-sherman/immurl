@@ -1,6 +1,6 @@
 {
   "name": "immurl",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "source": "lib/immurl.ts",
   "main": "dist/immurl.js",
