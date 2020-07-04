@@ -20,4 +20,4 @@ const url = new ImmutableURL('https://example.com');
 
 ## API
 
-TODO
+See the docs at https://immurl.netlify.app/

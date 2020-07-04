@@ -27,6 +27,7 @@
     "type": "git",
     "url": "git+https://github.com/tom-sherman/immurl.git"
   },
+  "homepage": "https://github.com/tom-sherman/immurl",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.10.4",
