@@ -8,9 +8,13 @@ const URLS = [
   'https://測試',
 ];
 
-describe('properties are equal with native URL object version', () => {
+const propertiesExcludingSearchParams = URL_PROPERTIES.filter(
+  (p) => p !== 'searchParams'
+);
+
+describe('equivalent to the native URL object', () => {
   test.each<[string, typeof URL_PROPERTIES[number]]>(
-    flatMap(URL_PROPERTIES, (property) =>
+    flatMap(propertiesExcludingSearchParams, (property) =>
       URLS.map(
         (url) => [url, property] as [string, typeof URL_PROPERTIES[number]]
       )
@@ -21,9 +25,23 @@ describe('properties are equal with native URL object version', () => {
       const immutable = new ImmutableURL(input);
       const url = new URL(input);
 
-      expect(immutable[property]);
+      expect(immutable[property]).toEqual(url[property]);
     }
   );
+
+  test.each(URLS.map((url) => [url]))('toString - %s', (input) => {
+    const immutable = new ImmutableURL(input);
+    const url = new URL(input);
+
+    expect(immutable.toString()).toBe(url.toString());
+  });
+
+  test.each(URLS.map((url) => [url]))('seachParams - %s', (input) => {
+    const immutable = new ImmutableURL(input);
+    const url = new URL(input);
+
+    expect(immutable.searchParams.toString()).toBe(url.searchParams.toString());
+  });
 });
 
 test('is immutable', () => {
