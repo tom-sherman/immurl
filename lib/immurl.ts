@@ -78,20 +78,36 @@ export class ImmutableURLSearchParams
     this._params = new URLSearchParams(init);
   }
 
-  append(): ImmutableURLSearchParams {
-    return new ImmutableURLSearchParams(this._params);
+  append(key: string, value: string): ImmutableURLSearchParams {
+    const newParams = new URLSearchParams(this.toString());
+
+    newParams.append(key, value);
+
+    return new ImmutableURLSearchParams(newParams);
   }
 
-  delete(): ImmutableURLSearchParams {
-    return new ImmutableURLSearchParams(this._params);
+  delete(key: string): ImmutableURLSearchParams {
+    const newParams = new URLSearchParams(this.toString());
+
+    newParams.delete(key);
+
+    return new ImmutableURLSearchParams(newParams);
   }
 
-  set(): ImmutableURLSearchParams {
-    return new ImmutableURLSearchParams(this._params);
+  set(key: string, value: string): ImmutableURLSearchParams {
+    const newParams = new URLSearchParams(this.toString());
+
+    newParams.set(key, value);
+
+    return new ImmutableURLSearchParams(newParams);
   }
 
   sort(): ImmutableURLSearchParams {
-    return new ImmutableURLSearchParams(this._params);
+    const newParams = new URLSearchParams(this.toString());
+
+    newParams.sort();
+
+    return new ImmutableURLSearchParams(newParams);
   }
 
   forEach(
@@ -117,15 +133,19 @@ export class ImmutableURLSearchParams
     return this._params.toString();
   }
 
-  // entries() {
-  //   return this._params.entries();
-  // }
+  entries() {
+    return this._params.entries();
+  }
 
-  // keys() {
-  //   return this._params.keys();
-  // }
+  keys() {
+    return this._params.keys();
+  }
 
-  // values() {
-  //   return this._params.values();
-  // }
+  values() {
+    return this._params.values();
+  }
+
+  [Symbol.iterator]() {
+    return this._params.entries();
+  }
 }
