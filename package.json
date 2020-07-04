@@ -11,7 +11,8 @@
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "build": "microbundle",
-    "dev": "microbundle watch"
+    "dev": "microbundle watch",
+    "prepublishOnly": "npm run build"
   },
   "files": [
     "dist"
