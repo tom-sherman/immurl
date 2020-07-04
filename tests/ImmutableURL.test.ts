@@ -44,7 +44,7 @@ describe('equivalent to the native URL object', () => {
   });
 });
 
-test('is immutable', () => {
+test('set() is immutable', () => {
   const url = new ImmutableURL('https://example.com');
 
   expect(url.set('hash', 'foo').hash).not.toEqual(url.hash);
