@@ -1,5 +1,33 @@
 import { URL_PROPERTIES } from './constants';
 
+/**
+ * Identical to the native URL interface except that all mutable properties are
+ * readonly. To change any of these properties instead you should call the
+ * `.set()` method which will return a new ImmutableURL object.
+ *
+ * All properties are identical to their native counterparts excelt
+ * `searchParams` which instead is a `ImmutableURLSearchParams` whose methods
+ * are all fully immutable.
+ *
+ * ```typescript
+ * let url = new ImmutableURL('http://example.com');
+ * url = url.set('path', '/foo'); // = ImmutableURL { http://example.com/foo }
+ *```
+ *
+ * To modify the search params you can call the immutable methods on
+ * searchParams to return a new ImmutableURLSearchParams which can then be
+ * passed to .set()
+ *
+ * ```typescript
+ * const newSearchParams = url.searchParams.append('foo', 'bar');
+ *
+ * url = url.set('searchParams', newSearchParams);
+ *
+ * // Or a shorthand
+ *
+ * url = url.set('searchParams', url.searchParams.append('foo', 'bar'));
+ * ```
+ */
 export class ImmutableURL implements Readonly<URL> {
   private readonly _url: URL;
   readonly hash!: string;
@@ -36,8 +64,7 @@ export class ImmutableURL implements Readonly<URL> {
   }
 
   /**
-   *
-   * @param property The property to set
+   * @param property The property of the URL to set
    * @param newValue The new value
    */
   set<P extends Exclude<keyof URL, 'toJSON' | 'origin'>>(
@@ -54,11 +81,13 @@ export class ImmutableURL implements Readonly<URL> {
 
 /**
  * Properties on URLSearchParams that mutate the instance
+ * @internal
  */
 type SearchParamsMutatingProperties = 'sort' | 'set' | 'delete' | 'append';
 
 /**
  * Methods that should return a new ImmutableURLSearchParams
+ * @internal
  */
 type SearchParamsModifiers = {
   [method in SearchParamsMutatingProperties]: (
@@ -66,6 +95,9 @@ type SearchParamsModifiers = {
   ) => ImmutableURLSearchParams;
 };
 
+/**
+ * Identical to the native URLSearchParams interface except that all mutable methods instead return a new `ImmutableURLSearchParams`.
+ */
 export class ImmutableURLSearchParams
   implements
     Omit<URLSearchParams, SearchParamsMutatingProperties>,

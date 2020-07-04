@@ -12,7 +12,8 @@
     "typecheck": "tsc --noEmit",
     "build": "microbundle",
     "dev": "microbundle watch",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "docs": "typedoc --stripInternal --excludePrivate --mode file --out docs lib"
   },
   "files": [
     "dist"
@@ -38,6 +39,7 @@
     "lodash": "^4.17.15",
     "microbundle": "^0.12.2",
     "prettier": "^2.0.5",
+    "typedoc": "^0.17.8",
     "typescript": "^3.9.6"
   }
 }

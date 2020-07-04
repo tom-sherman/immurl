@@ -1,3 +1,6 @@
+/**
+ * @internal
+ */
 export const URL_PROPERTIES = [
   'hash',
   'host',
