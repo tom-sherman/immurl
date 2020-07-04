@@ -1,6 +1,6 @@
 {
   "name": "immurl",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "",
   "source": "lib/immurl.ts",
   "main": "dist/immurl.js",
@@ -13,11 +13,17 @@
     "build": "microbundle",
     "dev": "microbundle watch"
   },
-  "keywords": [],
+  "files": [
+    "dist"
+  ],
   "author": {
     "email": "the.tomsherman@gmail.com",
     "name": "Tom Sherman",
     "url": "https://github.com/tom-sherman"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tom-sherman/immurl.git"
   },
   "license": "MIT",
   "devDependencies": {
