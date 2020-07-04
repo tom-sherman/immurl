@@ -12,7 +12,7 @@ export class ImmutableURL implements Readonly<URL> {
   readonly port!: string;
   readonly protocol!: string;
   readonly search!: string;
-  readonly searchParams!: URLSearchParams;
+  readonly searchParams!: ImmutableURLSearchParams;
   readonly username!: string;
 
   constructor(url: URL);
@@ -23,6 +23,8 @@ export class ImmutableURL implements Readonly<URL> {
     for (const key of URL_PROPERTIES) {
       this[key] = this._url[key] as any;
     }
+
+    this.searchParams = new ImmutableURLSearchParams(this.searchParams);
   }
 
   toString() {

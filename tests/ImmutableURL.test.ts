@@ -1,4 +1,4 @@
-import { ImmutableURL } from '../lib/immurl';
+import { ImmutableURL, ImmutableURLSearchParams } from '../lib/immurl';
 import { URL_PROPERTIES } from '../lib/constants';
 import flatMap from 'lodash/flatMap';
 
@@ -30,4 +30,10 @@ test('is immutable', () => {
   const url = new ImmutableURL('https://example.com');
 
   expect(url.set('hash', 'foo').hash).not.toEqual(url.hash);
+});
+
+test('searchParams property is an ImmutableURLSearchParams', () => {
+  const url = new ImmutableURL('https://example.com');
+
+  expect(url.searchParams).toBeInstanceOf(ImmutableURLSearchParams);
 });
