@@ -5,7 +5,7 @@ import { URL_PROPERTIES } from './constants';
  * readonly. To change any of these properties instead you should call the
  * `.set()` method which will return a new ImmutableURL object.
  *
- * All properties are identical to their native counterparts excelt
+ * All properties are identical to their native counterparts except
  * `searchParams` which instead is a `ImmutableURLSearchParams` whose methods
  * are all fully immutable.
  *
