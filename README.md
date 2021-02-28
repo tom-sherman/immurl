@@ -8,7 +8,7 @@
 npm install immurl
 ```
 
-Because immurl uses the native whatwg URL API under the hood you'll need a polyfill to support environments that [don't implment this API](https://developer.mozilla.org/en-US/docs/Web/API/URL#Browser_compatibility) eg. IE11.
+Because immurl uses the native whatwg URL API under the hood you'll need a polyfill to support environments that [don't implement this API](https://developer.mozilla.org/en-US/docs/Web/API/URL#Browser_compatibility) eg. IE11.
 
 ## Usage
 
