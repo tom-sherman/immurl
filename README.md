@@ -1,6 +1,6 @@
 # immurl
 
-🔗 A tiny (< 500B), 0-dependency, immutable URL library, backed by the native whatwg URL.
+🔗 A tiny (< 500B), 0-dependency, immutable URL library, backed by the native whatwg URL. 🎉 Now with immutable `Headers` support!
 
 ## Install
 
@@ -67,6 +67,23 @@ const newUrl2 = url.set(
   'searchParams',
   url.searchParams.append('q', 'search-term').set('foo', 'fuz').sort()
 );
+```
+
+### `ImmutableHeaders`
+
+Not strictly related to whatg URLs, but it's shoehorned in here because it's kinda related and they're usually used together.
+
+```typescript
+import { ImmutableHeaders } from 'immurl';
+
+const headers = new ImmutableHeaders({
+  foo: 'bar'
+});
+
+const newHeaders = headers.set('foo', 'fuz');
+
+console.log(headers.get('foo')); // Logs "bar"
+console.log(newHeaders.get('foo')); // Logs "fuz"
 ```
 
 ## API
