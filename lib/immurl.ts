@@ -181,3 +181,88 @@ export class ImmutableURLSearchParams
     return this._params.entries();
   }
 }
+
+/**
+ * Properties on Headers that mutate the instance
+ * @internal
+ */
+type HeadersMutatingProperties = 'append' | 'delete' | 'set';
+
+/**
+ * Methods that should return a new Headers
+ * @internal
+ */
+type HeadersModifiers = {
+  [method in HeadersMutatingProperties]: (...args: any[]) => ImmutableHeaders;
+};
+
+/**
+ * Identical to the native Headers interface except that all mutable methods instead return a new `ImmutableHeaders`.
+ */
+export class ImmutableHeaders
+  implements Omit<Headers, HeadersMutatingProperties>, HeadersModifiers {
+  private readonly _headers: Headers;
+
+  constructor(headersInit?: HeadersInit) {
+    this._headers = new Headers(headersInit);
+  }
+
+  private clone(): Headers {
+    return new Headers(this._headers);
+  }
+
+  entries() {
+    return this._headers.entries();
+  }
+
+  keys() {
+    return this._headers.keys();
+  }
+
+  values() {
+    return this._headers.values();
+  }
+
+  [Symbol.iterator]() {
+    return this._headers.entries();
+  }
+
+  forEach(
+    callbackfn: (value: string, key: string, parent: Headers) => void,
+    thisArg?: any
+  ) {
+    return this._headers.forEach(callbackfn, thisArg);
+  }
+
+  get(name: string): string | null {
+    return this._headers.get(name);
+  }
+
+  has(name: string) {
+    return this._headers.has(name);
+  }
+
+  set(name: string, value: string): ImmutableHeaders {
+    const newHeaders = this.clone();
+
+    newHeaders.set(name, value);
+
+    return new ImmutableHeaders(newHeaders);
+  }
+
+  delete(name: string): ImmutableHeaders {
+    const newHeaders = this.clone();
+
+    newHeaders.delete(name);
+
+    return new ImmutableHeaders(newHeaders);
+  }
+
+  append(name: string, value: string): ImmutableHeaders {
+    const newHeaders = this.clone();
+
+    newHeaders.append(name, value);
+
+    return new ImmutableHeaders(newHeaders);
+  }
+}
