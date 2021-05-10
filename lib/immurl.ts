@@ -73,7 +73,13 @@ export class ImmutableURL implements Readonly<URL> {
   ): ImmutableURL {
     const newUrl = new URL(this.toString());
 
-    newUrl[property] = newValue;
+    if (property === 'searchParams') {
+      // searchParams is a readonly property of URL, but we allow to set it anyway for ergonomics reasons
+      // We do this by setting the "search" property as the stringified URLSearchParams.
+      newUrl.search = (newValue as URLSearchParams).toString();
+    } else {
+      newUrl[property] = newValue;
+    }
 
     return new ImmutableURL(newUrl);
   }

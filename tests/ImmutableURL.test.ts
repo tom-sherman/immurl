@@ -55,3 +55,19 @@ test('searchParams property is an ImmutableURLSearchParams', () => {
 
   expect(url.searchParams).toBeInstanceOf(ImmutableURLSearchParams);
 });
+
+test('can update searchParams', () => {
+  const url = new ImmutableURL('https://example.com');
+  const newUrl = url.set(
+    'search',
+    url.searchParams
+      .append('q', 'search-term')
+      .set('foo', 'fuz')
+      .sort()
+      .toString()
+  );
+
+  expect(newUrl.toString()).toEqual(
+    'https://example.com/?foo=fuz&q=search-term'
+  );
+});
